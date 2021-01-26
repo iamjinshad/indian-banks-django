@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from datetime import timedelta
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,9 +25,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'q!t258fy*dtzq&@s$6)(fd8aiw)&i6ww$kdhjz7#=jci$ia2vf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,25 +40,25 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Package
+    # Third-Party Apps
     'rest_framework',
 
-    # My App
+    # My Apps (project's apps)
     'bank',
+
 
 ]
 
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-    ),
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination'
 }
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -141,4 +143,51 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = '/static/'
+
+STATIC_URL='/static/'
+STATICFILES_DIRS=[
+   os.path.join(BASE_DIR,'static')
+
+]
+STATIC_ROOT=os.path.join(BASE_DIR,'assest')
+
+MEDIA_URL='/media/'
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+
+
+
+
+# Token Validity
+# JWT_AUTH = {
+
+#     'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=5),
+#     'JWT_ALLOW_REFRESH': True,
+#     'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=5),
+# }
+
+SIMPLE_JWT = {
+'ACCESS_TOKEN_LIFETIME': timedelta(days=5),
+'REFRESH_TOKEN_LIFETIME': timedelta(days=10),
+'ROTATE_REFRESH_TOKENS': False,
+'BLACKLIST_AFTER_ROTATION': True,
+
+# 'ALGORITHM': 'HS256',
+# 'SIGNING_KEY': settings.SECRET_KEY,
+# 'VERIFYING_KEY': None,
+# 'AUDIENCE': None,
+# 'ISSUER': None,
+
+# 'AUTH_HEADER_TYPES': ('Bearer',),
+# 'USER_ID_FIELD': 'id',
+# 'USER_ID_CLAIM': 'user_id',
+
+# 'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+# 'TOKEN_TYPE_CLAIM': 'token_type',
+
+# 'JTI_CLAIM': 'jti',
+# 'TOKEN_USER_CLASS': 'rest_framework_simplejwt.models.TokenUser',
+
+'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
+'SLIDING_TOKEN_LIFETIME': timedelta(days=5),
+'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=10),
+}

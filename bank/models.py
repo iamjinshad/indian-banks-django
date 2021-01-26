@@ -1,8 +1,6 @@
 from django.db import models
 
 
-
-
 class banks(models.Model):
 	name 		= models.CharField(max_length=49)
 	_id 		= models.BigIntegerField(null=False, default=0)
