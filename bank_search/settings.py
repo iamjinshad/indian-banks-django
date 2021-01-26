@@ -27,7 +27,7 @@ SECRET_KEY = 'q!t258fy*dtzq&@s$6)(fd8aiw)&i6ww$kdhjz7#=jci$ia2vf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['indian-banks-data.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -158,35 +158,11 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 
 
 # Token Validity
-# JWT_AUTH = {
-
-#     'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=5),
-#     'JWT_ALLOW_REFRESH': True,
-#     'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=5),
-# }
-
 SIMPLE_JWT = {
 'ACCESS_TOKEN_LIFETIME': timedelta(days=5),
 'REFRESH_TOKEN_LIFETIME': timedelta(days=10),
 'ROTATE_REFRESH_TOKENS': False,
 'BLACKLIST_AFTER_ROTATION': True,
-
-# 'ALGORITHM': 'HS256',
-# 'SIGNING_KEY': settings.SECRET_KEY,
-# 'VERIFYING_KEY': None,
-# 'AUDIENCE': None,
-# 'ISSUER': None,
-
-# 'AUTH_HEADER_TYPES': ('Bearer',),
-# 'USER_ID_FIELD': 'id',
-# 'USER_ID_CLAIM': 'user_id',
-
-# 'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
-# 'TOKEN_TYPE_CLAIM': 'token_type',
-
-# 'JTI_CLAIM': 'jti',
-# 'TOKEN_USER_CLASS': 'rest_framework_simplejwt.models.TokenUser',
-
 'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
 'SLIDING_TOKEN_LIFETIME': timedelta(days=5),
 'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=10),
