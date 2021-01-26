@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'q!t258fy*dtzq&@s$6)(fd8aiw)&i6ww$kdhjz7#=jci$ia2vf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['indian-banks-data.herokuapp.com','127.0.0.1']
 
