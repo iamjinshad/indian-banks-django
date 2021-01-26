@@ -62,7 +62,7 @@ def Csv_Upload(request):
 		count = 0
 		for row in reader:
 			count += 1
-			if count == 50:
+			if count == 10001:
 				break
 			if settings.DEBUG:
 				print('=============================================----')

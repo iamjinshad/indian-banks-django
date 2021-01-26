@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'q!t258fy*dtzq&@s$6)(fd8aiw)&i6ww$kdhjz7#=jci$ia2vf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['indian-banks-data.herokuapp.com','127.0.0.1']
 
@@ -98,13 +98,26 @@ WSGI_APPLICATION = 'bank_search.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 
+# Local DB
+# DATABASES={
+#     'default':{
+#        'ENGINE':'django.db.backends.postgresql',
+#        'NAME':'allianze',
+#         'USER':'postgres',
+#         'PASSWORD':'123',
+#         'HOST':'localhost',
+#         'PORT':'5432'
+#             }
+# }
+
+# Live DB
 DATABASES={
     'default':{
        'ENGINE':'django.db.backends.postgresql',
-       'NAME':'allianze',
-        'USER':'postgres',
-        'PASSWORD':'123',
-        'HOST':'localhost',
+       'NAME':'d2b35mrkgffpvi',
+        'USER':'oudmnwecerinew',
+        'PASSWORD':'c73eca105d566b7ac7679be6364146230be203ee0548d5fca048c6cdb5c9f914',
+        'HOST':'ec2-34-192-72-159.compute-1.amazonaws.com',
         'PORT':'5432'
             }
 }
